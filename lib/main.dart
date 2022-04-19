@@ -5,14 +5,6 @@ import 'package:http/http.dart';
 
 void main() async {
   List<dynamic> data = await getData();
-  // print(data['title']);
-  String body = "";
-
-  for (int i = 0; i< data.length; i++ ) {
-
-  }
-  body = data[0]["body"];
-
 
   runApp(MaterialApp(
     // home: TestHttp(),
@@ -22,7 +14,36 @@ void main() async {
         centerTitle: true,
       ),
       body: Center(
-        child: Text('Body: $body'),
+        child: ListView.builder(
+          itemCount: data.length,
+          padding: const EdgeInsets.all(16.0),
+          itemBuilder: (context, position) {
+           if (position.isOdd) return const Divider();
+            return ListTile(
+              title: Text('${data[position]["title"]}',
+              style:const TextStyle(
+                fontSize: 14.9,
+                fontWeight: FontWeight.w600,
+                color: Colors.blueGrey
+              ),),
+              subtitle: Text('${data[position]["body"]}',
+              style: const TextStyle(
+                fontSize: 12.9,
+                fontWeight: FontWeight.w500,
+
+              ),),
+              leading: CircleAvatar(
+                backgroundColor: Colors.greenAccent,
+                child: Text(data[position]["title"][0].toString().toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 15.9,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurpleAccent
+                ),),
+              ),
+            );
+          }
+        ),
       )
     )
   )  );
