@@ -12,11 +12,14 @@ class TestHttp extends StatefulWidget {
 
 class _TestHttpState extends State<TestHttp> {
 
-  void getData() async {
 
-    Response response = await get(Uri.https('jsonplaceholder.typicode.com', 'posts'));
 
-    print(jsonDecode(response.body));
+  Future<String> getData() async {
+    String apiUrl = 'jsonplaceholder.typicode.com';
+    Response response = await get(Uri.https(apiUrl, 'posts'));
+
+    print(response.body);
+    return response.body;
   }
 
   @override
