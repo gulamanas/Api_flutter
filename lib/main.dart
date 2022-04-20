@@ -19,6 +19,7 @@ void main() async {
           padding: const EdgeInsets.all(16.0),
           itemBuilder: (context, position) {
            if (position.isOdd) return const Divider();
+           final index = position ~/2;
             return ListTile(
               title: Text('${data[position]["title"]}',
               style:const TextStyle(
@@ -30,7 +31,7 @@ void main() async {
               style: const TextStyle(
                 fontSize: 12.9,
                 fontWeight: FontWeight.w500,
-
+                  fontStyle: FontStyle.italic
               ),),
               leading: CircleAvatar(
                 backgroundColor: Colors.greenAccent,
@@ -38,10 +39,14 @@ void main() async {
                 style: const TextStyle(
                   fontSize: 15.9,
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepPurpleAccent
+                  color: Colors.deepPurpleAccent,
                 ),),
               ),
+              onTap: () {
+                print("${data[index]["id"]}");
+              },
             );
+            
           }
         ),
       )
