@@ -21,13 +21,13 @@ void main() async {
            if (position.isOdd) return const Divider();
            final index = position ~/2;
             return ListTile(
-              title: Text('${data[position]["title"]}',
+              title: Text('${data[index]["title"]}',
               style:const TextStyle(
                 fontSize: 14.9,
                 fontWeight: FontWeight.w600,
                 color: Colors.blueGrey
               ),),
-              subtitle: Text('${data[position]["body"]}',
+              subtitle: Text('${data[index]["body"]}',
               style: const TextStyle(
                 fontSize: 12.9,
                 fontWeight: FontWeight.w500,
@@ -35,7 +35,7 @@ void main() async {
               ),),
               leading: CircleAvatar(
                 backgroundColor: Colors.greenAccent,
-                child: Text(data[position]["title"][0].toString().toUpperCase(),
+                child: Text(data[index]["title"][0].toString().toUpperCase(),
                 style: const TextStyle(
                   fontSize: 15.9,
                   fontWeight: FontWeight.bold,
@@ -43,7 +43,8 @@ void main() async {
                 ),),
               ),
               onTap: () {
-                print("${data[index]["id"]}");
+                _showOnTapMessage(context, "${data[index]["title"]}");
+                // print("${data[index]["id"]}");
               },
             );
             
@@ -52,6 +53,33 @@ void main() async {
       )
     )
   )  );
+}
+
+void _showOnTapMessage(BuildContext context, String message) {
+  // var alert = AlertDialog(
+  //     title: Text('App'),
+  //     content: Text(message),
+  //     actions: [
+  //       TextButton(
+  //         onPressed: () {
+  //           Navigator.pop(context);
+  //         },
+  //          child: Text('OK')
+  //       )
+  //     ],
+  // );
+  showDialog(context: context, builder: (BuildContext context) => AlertDialog(
+    title: Text('App'),
+      content: Text(message),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+           child: Text('OK')
+        )
+      ],
+  ));
 }
 
  Future<List> getData() async {
