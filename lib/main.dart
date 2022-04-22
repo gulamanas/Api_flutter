@@ -18,11 +18,22 @@ void main() async {
             return ListTile(
               // title: Text('${_data[position]["name"]}'),
               title: Card(
-                child: Column(
-                  children: [
-                    Text('Name: ${_data[position]["name"]}'),
-                    Text('${_data[position]["username"]}'),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(child: Text('${_data[position]["name"]}')),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Username:'),
+                          Text('${_data[position]["username"]}'),
+                        ],
+                      ),
+                      Text('Email: ${_data[position]["email"]}'),
+                    ],
+                  ),
                 ),
               ),
             );
