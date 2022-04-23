@@ -76,10 +76,29 @@ void main() async {
                   ),
                 ),
               ),
+              onTap: () {
+                _showOnTapMessage(context, "${_data[position]["name"]}");
+              },
             );
           }),
     ),
   ));
+}
+
+void _showOnTapMessage(BuildContext context, String message) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            title: Text('App'),
+            content: Text(message),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('OK'))
+            ],
+          ));
 }
 
 Future<List> _getData() async {
