@@ -9,7 +9,7 @@ void main() async {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-        title: Text('Profile Users'),
+        title: const Text('Profile Users'),
         centerTitle: true,
       ),
       body: ListView.builder(
@@ -23,15 +23,55 @@ void main() async {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(child: Text('${_data[position]["name"]}')),
+                      Center(
+                          child: Text(
+                        '${_data[position]["name"]}',
+                        style: const TextStyle(
+                            fontSize: 18.5, fontWeight: FontWeight.bold),
+                      )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Username:'),
+                          const Text('Username:'),
                           Text('${_data[position]["username"]}'),
                         ],
                       ),
-                      Text('Email: ${_data[position]["email"]}'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Email :'),
+                          Text('${_data[position]["email"]}'),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Phone :'),
+                          Text('${_data[position]["phone"]}'),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Website :'),
+                          Text('${_data[position]["website"]}'),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Address :'),
+                          Text(
+                              '${_data[position]["address"]["street"]}, ${_data[position]["address"]["city"]}'),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Company :'),
+                          Text('${_data[position]["name"]}'),
+                        ],
+                      ),
                     ],
                   ),
                 ),
