@@ -21,28 +21,47 @@ void main() async {
       body: ListView.builder(
         itemCount: _features.length,
         itemBuilder: (BuildContext context, int position) {
-          if (position.isOdd) return new Divider();
+          if (position.isOdd) return const Divider();
           final index = position ~/2; // we are dividing position by 2 and returning an integer result
 
           var format = DateFormat.yMMMMd("en_US").add_jm();
-          // print(format);
 
           var date = format.format(DateTime.fromMicrosecondsSinceEpoch(_features[index]['properties']['time'] * 1000, isUtc: true ) );
-          // print(_features);
-          print(date);
-
-
 
           return ListTile(
-            title: Text("$date"),
+            title: Text(date),
             subtitle: Text(
               "${_features[index]["properties"]["place"]}"
             ),
+            leading: CircleAvatar(
+              backgroundColor: Colors.green,
+              child: Text(
+                '${_features[index]["properties"]["mag"]}'
+              ),
+            ),
+            onTap: () {_showOnTapMessage(context, "${_features[index]["properties"]["title"]}");
+            }
           );
         }
       ),
       ),
   ));
+}
+
+void _showOnTapMessage(BuildContext context, String message) {
+  showDialog(context: context,
+   builder: (BuildContext context) => AlertDialog(
+     title: Text('Quakes'),
+     content: Text(message),
+     actions: [
+       TextButton(
+         onPressed: () {
+           Navigator.pop(context);
+         },
+          child: Text('OK')
+          )
+     ],
+   ));
 }
 
 Future<Map> getData() async {
