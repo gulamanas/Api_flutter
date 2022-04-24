@@ -51,14 +51,14 @@ void main() async {
 void _showOnTapMessage(BuildContext context, String message) {
   showDialog(context: context,
    builder: (BuildContext context) => AlertDialog(
-     title: Text('Quakes'),
+     title: const Text('Quakes'),
      content: Text(message),
      actions: [
        TextButton(
          onPressed: () {
            Navigator.pop(context);
          },
-          child: Text('OK')
+          child: const Text('OK')
           )
      ],
    ));
